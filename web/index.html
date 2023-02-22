@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function callAPI() {
+                fetch('http://localhost:3000/api').then(response => {
+                    document.getElementById("response").textContent = response;
+                    return response.json();
+                }).then(data => {
+                    console.log(data);
+                    document.getElementById("response").textContent = JSON.stringify(data);
+                }).catch(err => {
+                    console.log(err);
+                    document.getElementById("response").textContent = err;
+                });
+            }
+        </script>
+    </head>
+
+    <body>
+        <input type = "button" onclick = "callAPI()" value = "Call API">
+        <p id = "response"></p>
+    </body>
+</html>
