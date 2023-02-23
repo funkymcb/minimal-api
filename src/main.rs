@@ -48,5 +48,5 @@ fn health() -> Value {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/api", routes![get, live, health]).attach(CORS)
+    rocket::build().mount("/", routes![get, live, health]).attach(CORS)
 }
