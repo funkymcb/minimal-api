@@ -28,11 +28,25 @@ impl Fairing for CORS {
 #[get("/", format = "json")]
 fn get() -> Value {
     json!({
+        "message": "Hello! I am a blazingly fast API!",
+    })
+}
+
+#[get("/live", format = "json")]
+fn live() -> Value {
+    json!({
         "message": "API is alive",
+    })
+}
+
+#[get("/health", format = "json")]
+fn health() -> Value {
+    json!({
+        "message": "API is healthy",
     })
 }
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/api", routes![get]).attach(CORS)
+    rocket::build().mount("/api", routes![get, live, health]).attach(CORS)
 }
