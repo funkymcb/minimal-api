@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: minimal-ui
+  IMAGE_NAME: minimal-api
   VERSION: 0.0.1
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
     - name: Build Docker image
       if: github.event_name != 'pull_request'
       run: |
-        docker build -t ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }} --target ui-build .
+        docker build -t ghcr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }} .
 
     # Push Docker image (don't push on PR)
     - name: Push Docker image
