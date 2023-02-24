@@ -6,6 +6,8 @@ use rocket::{Request, Response};
 use rocket::serde::json::{json, Value};
 use rocket::fairing::{Fairing, Info, Kind};
 
+use std::env;
+
 pub struct CORS;
 
 #[rocket::async_trait]
@@ -27,8 +29,9 @@ impl Fairing for CORS {
 
 #[get("/", format = "json")]
 fn get() -> Value {
+    let msg = env::var("API_MESSAGE").expect("$API_MESSAGE is not set");
     json!({
-        "message": "Hello! I am a blazingly fast API!",
+        "message": msg,
     })
 }
 
